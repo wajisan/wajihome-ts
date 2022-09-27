@@ -1,0 +1,23 @@
+{
+    "dependencies": {
+        "@fastify/env": "^4.1.0",
+        "axios": "^0.27.2",
+        "beautiful-dom": "^1.0.9",
+        "dotenv": "^16.0.2",
+        "fastify": "^4.6.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.7.21"
+    },
+    "name": "wajihome",
+    "version": "1.0.0",
+    "main": "build/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "tsc",
+        "start": "node build/index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": ""
+}
