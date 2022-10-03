@@ -11,7 +11,7 @@
         data() {
             return {
                 weather: [] as Weather[],
-                api: 'http://localhost:3000/weather'
+                api: this.$server_url + '/weather'
             }
         },
         async created() {

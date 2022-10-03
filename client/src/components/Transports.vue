@@ -12,7 +12,7 @@
         data() {
             return {
                 transports: [] as Hour[],
-                api: 'http://localhost:3000/transport'
+                api: this.$server_url + '/transport'
             }
         },
         async created() {

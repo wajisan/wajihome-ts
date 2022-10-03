@@ -11,22 +11,25 @@ export async function getCrypto() {
     const uri = api + stakeAddress;
     try {
         const { data, status } = await axios.get<string>(
-            uri,
+            uri/*,
             {
                 headers: {
                     //Accept: 'application/json',
                 },
-            },
+            },*/
         );
+        //console.log("CRYPTO", data);
         const dom = new BeautifulDom(data);
-        const crypto_info = dom.querySelectorAll('td')
+        //console.log(data);
+        const crypto_info = dom.getElementsByClassName('font-mono')
             .filter(obj => {
                 return obj.innerText !== null 
-                && /\d/.test(obj.innerText) 
-                && !obj.innerText.includes('...')
-                && !obj.innerText.includes('stake')
+                //&& /\d/.test(obj.innerText) 
+                //&& !obj.innerText.includes('...')
+                && obj.outerHTML.includes('items-baseline')
             })
             .map(a => a.innerText);
+            //console.log("CRYPTO",crypto_info);
         return crypto_info;
     } catch(error) {
         if (axios.isAxiosError(error)) {

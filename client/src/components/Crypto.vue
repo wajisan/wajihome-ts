@@ -5,7 +5,7 @@
         data() {
             return {
                 crypto: [] as string[],
-                api: 'http://localhost:3000/crypto'
+                api: this.$server_url + '/crypto'
             }
         },
         async created() {

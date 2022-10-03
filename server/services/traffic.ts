@@ -8,7 +8,7 @@ export async function getTraffic() {
         return axios.get(uri).then((res : any) => {
                 const dom = new BeautifulDom(res.data);
                 const arr : string[] = dom.querySelectorAll('#fermeture_nocturne tbody tr')
-                    .filter(a => a.innerText.includes("A4" || "A86" || "A6" ))
+                    .filter(a => a.innerText.includes("A4") || a.innerText.includes("A86") || a.innerText.includes("A6"))
                     .map(a => a.innerText.replace(/\t/g, ''));
                 return arr;
             });

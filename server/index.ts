@@ -13,7 +13,7 @@ const schema = {
     properties: {
       PORT: {
         type: 'string',
-        default: 3000
+        default: 9856
       }
     }
   }
@@ -39,7 +39,7 @@ declare module 'fastify' {
     }
   }
 
-const fastify = Fastify({logger: false});
+const fastify = Fastify({logger: true});
 fastify.register(fastifyEnv, options)
        .after(err => {
           if (err) console.log(err);
@@ -49,6 +49,10 @@ fastify.register(fastifyEnv, options)
 
 
 /* ROUTES */
+fastify.get('/', (req, rep) => {
+	rep.send({hello: 'world'});
+})
+
 fastify.get('/traffic', (req, rep) => {
     rep.header("Access-Control-Allow-Origin", "*");
     getTraffic().then(data => {
@@ -65,6 +69,7 @@ fastify.get('/transport', (req, rep) => {
 fastify.get('/crypto', (req, rep) => {
     rep.header("Access-Control-Allow-Origin", "*");
     getCrypto().then(data => {
+        console.log(data);
         rep.send(data);
     })
 });
@@ -77,7 +82,7 @@ fastify.get('/weather', (req, rep) => {
 });
 
 /* server */
-fastify.listen({ port: 3000, host: '127.0.0.1' }, (err) => {
+fastify.listen({ port: 9856, host: 'wajihome.wajitech.fr' }, (err) => {
     if (err) {
         fastify.log.error(err);
         process.exit(1);

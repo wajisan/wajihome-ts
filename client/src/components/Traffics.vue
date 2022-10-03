@@ -5,7 +5,7 @@
         data() {
             return {
                 traffics: [] as string[],
-                api: 'http://localhost:3000/traffic'
+                api: this.$server_url + '/traffic'
             }
         },
         async created() {
@@ -13,9 +13,16 @@
         },
         methods: {
             async getTraffics() {
+                try {
                 const response = await fetch(this.api);
+                console.log('resp',response);
                 const data = await response.json();
+                console.log('data', data);
                 this.traffics = data;
+                }
+                catch (err) {
+                    console.error(err);
+                }
             }
         }
     })
