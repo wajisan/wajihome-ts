@@ -1,5 +1,6 @@
 //import * as dotenv from 'dotenv';
 import Fastify from 'fastify';
+import fs from 'fs';
 const fastifyEnv = require('@fastify/env');
 
 import {getWeather} from './services/weather';
@@ -39,7 +40,13 @@ declare module 'fastify' {
     }
   }
 
-const fastify = Fastify({logger: true});
+const fastify = Fastify({
+    logger: true,
+    https: {
+        key : fs.readFileSync(__dirname + '/../cert/privkey.pem'),
+        cert : fs.readFileSync(__dirname + '/../cert/cert.pem')
+    }
+});
 fastify.register(fastifyEnv, options)
        .after(err => {
           if (err) console.log(err);
