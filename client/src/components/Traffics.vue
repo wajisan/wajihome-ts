@@ -32,11 +32,12 @@
       
     
       <div class="card" v-if="traffics.length > 0">
-        <h2>Fermetures nocturnes</h2>
-        <p>de 21h à 6h</p>
-        <div v-for="(item, index) in traffics" v-bind:key="'traffic'+index">
-            <span :id="'traffic'+index"> {{item}}</span>
-            <hr/>
+        <h2>Travaux 🚧 </h2>
+        <p>de 21h à 6h 🌃</p>
+        <div  class="traffic-container">
+            <div v-for="(item, index) in traffics" v-bind:key="'traffic'+index" class="traffic-item">
+                <span :id="'traffic'+index"> {{item}}</span>
+            </div>
         </div>
       </div>
     </template>
@@ -44,6 +45,10 @@
     <style scoped>
     .read-the-docs {
       color: #888;
+    }
+
+    .traffic-item:nth-child(even) {
+        background:#d6d6d6;
     }
     </style>
     

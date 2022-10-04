@@ -15,6 +15,9 @@ import Weather from './components/Weather.vue';
 </template>
 
 <style scoped>
+  body {
+    background: white;
+  }
 .logo {
   height: 6em;
   padding: 1.5em;

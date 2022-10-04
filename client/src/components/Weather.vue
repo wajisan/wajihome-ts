@@ -38,23 +38,34 @@
       
     
       <div class="card" v-if="weather.length > 0">
-        <h2>Meteo</h2>
+        <h2>Meteo ⛅</h2>
         <p>Villiers sur marne</p>
-        <div v-for="(item, index) in weather" v-bind:key="'weather'+index">
-            <div :id="'weather'+index" class="weather-item"> 
-                <span> <b>heure</b> : {{item.datetime}}</span>
-                <span> <b>vent moyen</b> : {{item.wind10m}} km/h</span>
-                <span> <b>probabilité pluie</b> : {{item.probarain}} %</span>
-                <span> <b>température</b> : {{item.temp2m}}°C </span>
+        <div class="weather-container">
+            <div v-for="(item, index) in weather" v-bind:key="'weather'+index" class="weather-item">
+                <div :id="'weather'+index" class="weather-content"> 
+                    <b>{{item.datetime}}</b>
+                    <span>{{item.temp2m}}°C </span>
+                    <span>{{item.wind10m}} km/h 💨</span>
+                    <span>{{item.probarain}} % 💧</span>
+                </div>
             </div>
-            <hr/>
         </div>
       </div>
     </template>
     
     <style scoped>
-    .weather-item {
+    .weather-content {
       display: grid;
+    }
+    .weather-item {
+        margin: auto;
+        padding: 10px;
+    }
+    .weather-item:nth-child(even) {
+        background:#d6d6d6;
+    }
+    .weather-container {
+        display: flex;
     }
     </style>
     

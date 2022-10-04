@@ -25,11 +25,9 @@
       
     
       <div class="card" v-if="crypto.length > 0">
-        <h2>Cardano information</h2>
-        <p>Stake address</p>
+        <h2>Cardano 🏦</h2>
         <div v-for="(item, index) in crypto" v-bind:key="'crypto'+index">
-            <span :id="'crypto'+index"> {{item}}</span>
-            <hr/>
+            <span :id="'crypto'+index"> {{item}} ₳</span>
         </div>
       </div>
     </template>
