@@ -16,9 +16,9 @@ function parseTransport(jsonObj : any) {
 }
 
 
-export async function getTransport() {
+export async function getTransport(where: string) {
 
-    const api = process.env.API_TRANSPORT ?? '';
+    const api = process.env.API_TRANSPORT + where ?? '';
 
     const uri = api;
     try {

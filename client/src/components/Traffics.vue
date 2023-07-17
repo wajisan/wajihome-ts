@@ -15,9 +15,7 @@
             async getTraffics() {
                 try {
                 const response = await fetch(this.api);
-                console.log('resp',response);
                 const data = await response.json();
-                console.log('data', data);
                 this.traffics = data;
                 }
                 catch (err) {
@@ -33,7 +31,7 @@
     
       <div class="card" v-if="traffics.length > 0">
         <h2>Travaux 🚧 </h2>
-        <p>de 21h à 6h 🌃</p>
+        <p>21h00 à 6h00 🌃</p>
         <div  class="traffic-container">
             <div v-for="(item, index) in traffics" v-bind:key="'traffic'+index" class="traffic-item">
                 <span :id="'traffic'+index"> {{item}}</span>

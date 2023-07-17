@@ -1,6 +1,14 @@
 //import * as dotenv from 'dotenv';
 import Fastify from 'fastify';
+import { FastifyRequest, FastifyReply } from 'fastify';
 import fs from 'fs';
+
+interface TransportRequest extends FastifyRequest {
+    query: {
+      destination?: string;
+    }
+}
+
 const fastifyEnv = require('@fastify/env');
 
 import {getWeather} from './services/weather';
@@ -66,9 +74,10 @@ fastify.get('/traffic', (req, rep) => {
         rep.send(data);
     })
 })
-fastify.get('/transport', (req, rep) => {
+fastify.get('/transport', (req: any, rep: FastifyReply) => {
+    const dest : string  = req.query.destination;
     rep.header("Access-Control-Allow-Origin", "*");
-    getTransport().then(data => {
+    getTransport(dest).then(data => {
         rep.send(data);
     })
 });

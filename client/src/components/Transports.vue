@@ -9,7 +9,16 @@
         }
     export default defineComponent({
     
-        
+        props: {
+            destination_url: {
+                type: String,
+                required: true
+            },
+            destination_label: {
+                type: String,
+                required: true
+            }
+        },
         data() {
             return {
                 transports: [] as Hour[],
@@ -22,9 +31,9 @@
         },
         methods: {
             async getTransports() {
-                const response = await fetch(this.api);
+                const response = await fetch(this.api+"?destination="+this.destination_url);
                 const data = await response.json();
-                this.transports = data.map(a => a.item);
+                this.transports = data.map((a : any) => a.item);
             },
             setDateFormat() {
                 this.transports.map(obj => {
@@ -48,7 +57,7 @@
     
       <div class="card" v-if="transports.length > 0">
         <h2>RER E 🚅</h2>
-        <p>Villiers sur marne - direction haussman st lazare</p>
+        <p>{{ destination_label }}</p>
         <div class="trans-container">
             <div v-for="(item, index) in transports" v-bind:key="'trans'+index" class="trans-item">
                 <div :id="'trans'+index" v-if="item.trainNumber" class="trans-content">

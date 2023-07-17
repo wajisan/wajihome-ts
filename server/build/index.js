@@ -54,8 +54,9 @@ fastify.get('/traffic', (req, rep) => {
     });
 });
 fastify.get('/transport', (req, rep) => {
+    const dest = req.query.destination;
     rep.header("Access-Control-Allow-Origin", "*");
-    (0, transport_1.getTransport)().then(data => {
+    (0, transport_1.getTransport)(dest).then(data => {
         rep.send(data);
     });
 });

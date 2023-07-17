@@ -27,10 +27,10 @@ function parseTransport(jsonObj) {
     }
     return null;
 }
-function getTransport() {
+function getTransport(where) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
-        const api = (_a = process.env.API_TRANSPORT) !== null && _a !== void 0 ? _a : '';
+        const api = (_a = process.env.API_TRANSPORT + where) !== null && _a !== void 0 ? _a : '';
         const uri = api;
         try {
             const { data, status } = yield axios_1.default.get(uri, {

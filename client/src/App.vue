@@ -8,7 +8,14 @@ import Weather from './components/Weather.vue';
 <template>
   <div>
     <Weather />
-    <Transports />
+    <Transports 
+      destination_url="villierssurmarneleplessistrevise-haussmannsaintlazare" 
+      destination_label="Villiers sur marne - Saint Lazare"
+    />
+    <Transports 
+      destination_url="haussmannsaintlazare-villierssurmarneleplessistrevise" 
+      destination_label="Saint Lazare - Villiers sur marne"
+    />
     <Traffics />
     <Crypto />
   </div>
@@ -17,6 +24,7 @@ import Weather from './components/Weather.vue';
 <style scoped>
   body {
     background: white;
+    font-family: system-ui;
   }
 .logo {
   height: 6em;
