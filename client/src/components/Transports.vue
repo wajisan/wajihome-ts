@@ -33,7 +33,7 @@
             async getTransports() {
                 const response = await fetch(this.api+"?destination="+this.destination_url);
                 const data = await response.json();
-                this.transports = data.map((a : any) => a.item);
+                this.transports = data.map((a : any) => a.item).slice(0, 3);;
             },
             setDateFormat() {
                 this.transports.map(obj => {

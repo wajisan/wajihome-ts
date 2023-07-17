@@ -46,7 +46,8 @@ function getTransport(where) {
                     && obj.innerHTML.includes('itemListElement')
                     && !obj.innerHTML.includes('BreadcrumbList');
             })
-                .map(a => JSON.parse(a.innerHTML));
+                .map(a => JSON.parse(a.innerHTML))
+                .slice(0, 3);
             return parseTransport(jsonObj);
         }
         catch (error) {

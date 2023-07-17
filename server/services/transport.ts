@@ -40,7 +40,8 @@ export async function getTransport(where: string) {
             })
             .map(a => JSON.parse(a.innerHTML));
 
-            return parseTransport(jsonObj);
+        return parseTransport(jsonObj);
+
     } catch(error) {
         if (axios.isAxiosError(error)) {
             console.error('error message: ', error.message);
