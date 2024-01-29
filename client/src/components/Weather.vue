@@ -21,7 +21,8 @@
         methods: {
             async getWeather() {
                 const response = await fetch(this.api);
-                const data = await response.json();
+                let data = await response.json();
+                data = JSON.parse(data.weather_data.replace(/'/g, '"'));
                 this.weather = data.forecast;
             },
             setDateFormat() {

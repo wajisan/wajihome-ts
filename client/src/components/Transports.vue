@@ -2,9 +2,9 @@
     import { defineComponent } from 'vue'
 
     type Hour = {
-            departureTime : string;
-            arrivalTime : string;
-            trainNumber : string;
+            time : string;
+            arrive : string;
+            name : string;
             duration : number;
         }
     export default defineComponent({
@@ -31,20 +31,30 @@
         },
         methods: {
             async getTransports() {
-                const response = await fetch(this.api+"?destination="+this.destination_url);
+                const response = await fetch(this.api+this.destination_url);
                 const data = await response.json();
-                this.transports = data.map((a : any) => a.item).slice(0, 3);;
+                
+                this.transports = Array.from(data.transports);
             },
+
             setDateFormat() {
                 this.transports.map(obj => {
-                    const tmpArrival : any = new Date(obj.arrivalTime);
-                    const tmpDeparture : any = new Date(obj.departureTime);
-                    obj.duration = Math.round(
-                        Math.abs(tmpArrival - tmpDeparture) / (60 * 1000)
-                    );
-                    obj.departureTime = new Date(obj.departureTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                    obj.arrivalTime = new Date(obj.arrivalTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                    obj.trainNumber = obj.trainNumber.replace('RER', '');
+                    const arrivalTime : any = new Date(); // Crée un objet Date pour l'heure d'arrivée
+                    const departureTime : any = new Date(); // Crée un objet Date pour l'heure de départ
+
+                    // Décompose l'heure d'arrivée et de départ à partir des chaînes
+                    const arriveTime : string[] = obj.arrive.split(':');
+                    const departTime : string[] = obj.time.split(':');
+
+                    // Définit les heures et les minutes pour l'heure d'arrivée
+                    arrivalTime.setHours(parseInt(arriveTime[0]), parseInt(arriveTime[1]), 0, 0);
+                    // Définit les heures et les minutes pour l'heure de départ
+                    departureTime.setHours(parseInt(departTime[0]), parseInt(departTime[1]), 0, 0);
+
+                    // Calcule la différence en minutes entre l'heure d'arrivée et l'heure de départ
+                    const duration = Math.round(Math.abs(arrivalTime - departureTime) / (60 * 1000));
+
+                    obj.duration = duration;
                 });
             }
 
@@ -60,9 +70,9 @@
         <p>{{ destination_label }}</p>
         <div class="trans-container">
             <div v-for="(item, index) in transports" v-bind:key="'trans'+index" class="trans-item">
-                <div :id="'trans'+index" v-if="item.trainNumber" class="trans-content">
-                    <span>{{item.trainNumber}} 👨‍✈️</span>
-                    <span>{{item.departureTime}} 🕝</span>
+                <div :id="'trans'+index" v-if="item.time" class="trans-content">
+                    <span>{{item.name}} 👨‍✈️</span>
+                    <span>{{item.time}} 🕝</span>
                     <span>{{item.duration}} min ⏳</span>
                 </div>    
             </div>

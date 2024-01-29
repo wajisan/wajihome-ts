@@ -1,10 +1,14 @@
 <script lang="ts">
     import { defineComponent } from 'vue'
 
+    type Crypto = {
+            value : string;
+        }
+
     export default defineComponent({
         data() {
             return {
-                crypto: [] as string[],
+                crypto: [] as Crypto[],
                 api: this.$server_url + '/crypto'
             }
         },
@@ -15,7 +19,7 @@
             async getCrypto() {
                 const response = await fetch(this.api);
                 const data = await response.json();
-                this.crypto = data;
+                this.crypto = Array.from(data.crypto_info);
             }
         }
     })
@@ -23,11 +27,11 @@
     
     <template>
       
-    
       <div class="card" v-if="crypto.length > 0">
+        
         <h2>Cardano 🏦</h2>
         <div v-for="(item, index) in crypto" v-bind:key="'crypto'+index">
-            <span :id="'crypto'+index"> {{item}} ₳</span>
+            <span :id="'crypto'+index"> {{item.value}} ₳</span>
         </div>
       </div>
     </template>
