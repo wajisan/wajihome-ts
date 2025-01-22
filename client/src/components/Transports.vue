@@ -34,7 +34,7 @@
                 const response = await fetch(this.api+this.destination_url);
                 const data = await response.json();
                 
-                this.transports = Array.from(data.transports);
+                this.transports = Array.from(data.transports).slice(0, 4);
             },
 
             setDateFormat() {
@@ -66,7 +66,7 @@
       
     
       <div class="card" v-if="transports.length > 0">
-        <h2>RER E 🚅</h2>
+        <h2>RER D 🚅</h2>
         <p>{{ destination_label }}</p>
         <div class="trans-container">
             <div v-for="(item, index) in transports" v-bind:key="'trans'+index" class="trans-item">
@@ -83,7 +83,7 @@
     <style scoped>
 
     h2 {
-        color: #DE81D3;
+        color: #0d8c5d;
     }
     .read-the-docs {
       color: #888;
