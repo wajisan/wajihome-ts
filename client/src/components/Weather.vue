@@ -39,7 +39,7 @@
     
       <div class="card" v-if="weather.length > 0">
         <h2>Meteo ⛅</h2>
-        <p>Villiers sur marne</p>
+        <p>Créteil</p>
         <div class="weather-container">
             <div v-for="(item, index) in weather" v-bind:key="'weather'+index" class="weather-item">
                 <div :id="'weather'+index" class="weather-content"> 
