@@ -10,20 +10,20 @@ import Bikes from './components/Bikes.vue';
   <div>
     <Weather />
     <Transports 
-      destination_url="?trip=villierssurmarneleplessistrevise-haussmannsaintlazare" 
-      destination_label="Villiers sur marne - Saint Lazare"
+      destination_url="?trip=levertdemaisons-parisgaredelyon" 
+      destination_label="Vert Maisons - Gare Lyon"
     />
     <Transports 
-      destination_url="?trip=haussmannsaintlazare-villierssurmarneleplessistrevise" 
-      destination_label="Saint Lazare - Villiers sur marne"
+      destination_url="?trip=parisgaredelyon-levertdemaisons" 
+      destination_label="Gare Lyon - Vert Maisons"
     />
     <Bikes 
-      station_code="8004"
-      station_name="Madeleine"
+      station_code="47007"
+      station_name="Vert Maisons Est"
     />
     <Bikes 
-      station_code="8009"
-      station_name="St Lazare"
+      station_code="41405"
+      station_name="Vert Maisons Ouest"
     />
     <!--<Traffics />-->
     <Crypto />
